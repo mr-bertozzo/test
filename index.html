@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora de Tamaño de Muestra</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Tamaño de Muestra</h1>
+        <form id="sampleSizeForm">
+            <label for="populationSize">Tamaño de Población:</label>
+            <input type="number" id="populationSize" required>
+            
+            <label for="confidenceLevel">Nivel de Confianza (%):</label>
+            <input type="number" id="confidenceLevel" required>
+            
+            <label for="estimatedProportion">Proporción Estimada (%):</label>
+            <input type="number" id="estimatedProportion" required>
+            
+            <label for="marginOfError">Margen de Error (%):</label>
+            <input type="number" id="marginOfError" required>
+            
+            <button type="button" onclick="calculateSampleSize()">Calcular</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
