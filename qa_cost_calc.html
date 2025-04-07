@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9fafc;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+        .results p {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333333;
+        }
+        .results span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cost Calculator</h1>
+        <div class="input-group">
+            <label for="evaluationsPerHour">Evaluations per hour</label>
+            <input type="number" id="evaluationsPerHour" value="3">
+        </div>
+        <div class="input-group">
+            <label for="workShift">Daily work shift (hours)</label>
+            <input type="number" id="workShift" value="7">
+        </div>
+        <div class="input-group">
+            <label for="qaCost">Avg. Human QA Cost (monthly)</label>
+            <input type="number" id="qaCost" value="600">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+
+        <div class="results" id="results">
+            <p><strong>Evaluations per day:</strong> <span id="evaluationsPerDay">-</span></p>
+            <p><strong>Max evaluations per month:</strong> <span id="maxEvaluations">-</span></p>
+            <p><strong>Cost per evaluation:</strong> $<span id="costPerEvaluation">-</span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const evaluationsPerHour = parseFloat(document.getElementById('evaluationsPerHour').value);
+            const workShift = parseFloat(document.getElementById('workShift').value);
+            const qaCost = parseFloat(document.getElementById('qaCost').value);
+
+            const evaluationsPerDay = evaluationsPerHour * workShift;
+            const maxEvaluations = evaluationsPerDay * 20; // Assuming 20 working days per month
+            const costPerEvaluation = (qaCost / maxEvaluations).toFixed(2);
+
+            document.getElementById('evaluationsPerDay').textContent = evaluationsPerDay;
+            document.getElementById('maxEvaluations').textContent = maxEvaluations;
+            document.getElementById('costPerEvaluation').textContent = costPerEvaluation;
+        }
+    </script>
+</body>
+</html>
